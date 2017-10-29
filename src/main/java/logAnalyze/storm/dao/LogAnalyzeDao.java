@@ -80,11 +80,10 @@ public class LogAnalyzeDao {
 
     public List<BaseRecord> sumRecordValue(String startTime, String endTime) {
         String sql = "SELECT indexName,SUM(pv) AS pv,SUM(uv) AS uv FROM `log_analyze_job_nimute_append` " +
-                " WHERE  executeTime BETWEEN  '" + startTime + "' AND '" +endTime+"' "+
+                " WHERE  executeTime BETWEEN  '" + startTime + "' AND '" + endTime + "' " +
                 " GROUP BY indexName";
         System.out.println(sql);
-        return jdbcTemplate.query(sql
-                , new BeanPropertyRowMapper<BaseRecord>(BaseRecord.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<BaseRecord>(BaseRecord.class));
     }
 
 

@@ -1,7 +1,7 @@
 package logMonitor.mail;
 
 /**
- * 功能描述：
+ * 功能描述：邮箱
  */
 public class MailCenterConstant {
     public final static String PROTOCOL = "smtp";
