@@ -11,13 +11,13 @@ import logAnalyze.storm.bolt.ProcessMessage;
 import logAnalyze.storm.spout.RandomSpout;
 
 /**
- * Describe: 请补充类描述
+ * Describe: 驱动类
  */
 public class LogAnalyzeTopologyMain {
     public static void main(String[] args) throws  Exception{
         TopologyBuilder builder = new TopologyBuilder();
-        builder.setSpout("kafka-spout", new RandomSpout(), 2);
-        builder.setBolt("MessageFilter-bolt",new MessageFilterBolt(),3).shuffleGrouping("kafka-spout");
+        builder.setSpout("kafka-spout", new RandomSpout(), 2);//获取外部数据源信息
+        builder.setBolt("MessageFilter-bolt",new MessageFilterBolt(),3).shuffleGrouping("kafka-spout");//随机分组消费数据
         builder.setBolt("ProcessMessage-bolt",new ProcessMessage(),2).fieldsGrouping("MessageFilter-bolt", new Fields("type"));
         Config topologConf = new Config();
         if (args != null && args.length > 0) {

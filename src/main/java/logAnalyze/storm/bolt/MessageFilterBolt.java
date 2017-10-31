@@ -19,7 +19,7 @@ public class MessageFilterBolt extends BaseBasicBolt {
         String line = input.getString(0);
         //对数据进行解析
         LogMessage logMessage = LogAnalyzeHandler.parser(line);
-        if (logMessage == null || !LogAnalyzeHandler.isValidType(logMessage.getType())) {
+        if (logMessage == null || !LogAnalyzeHandler.isValidType(logMessage.getType())) {//校验，去掉不关注的
             return;
         }
         collector.emit(new Values(logMessage.getType(), logMessage));
